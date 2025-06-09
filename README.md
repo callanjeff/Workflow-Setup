@@ -64,3 +64,44 @@ You can modify the script to:
 - Auto-download TCGA data
 - Initialize a Git repository
 - Add a `.gitignore` or conda environment file
+
+## Environment Shortcuts (Optional)
+
+To make directory navigation easier during analysis, you can source the `set_tcga_dirs.sh` script to define environment variables pointing to each major project folder.
+
+### How to Set Up
+
+1. Run this in your terminal:
+
+   ```bash
+   source scripts/bash/set_tcga_dirs.sh
+   ```
+
+2. Now you can jump to directories like this:
+
+   ```bash
+   cd $pyscripts       # Python analysis scripts
+   cd $rawdata         # Raw TCGA data files
+   cd $resultsfigs     # Plots and charts
+   cd $finalreport     # Final PDF reports
+   ```
+
+### Directory Shortcuts Available
+
+| Variable        | Points To                                                       |
+|----------------|------------------------------------------------------------------|
+| `$projectroot` | `~/Bioinformatics/TCGA_CESC_PRRG2_Project/`                     |
+| `$rawdata`     | `.../data/raw/`                                                 |
+| `$processed`   | `.../data/processed/`                                           |
+| `$metadata`    | `.../data/metadata/`                                            |
+| `$rscripts`    | `.../scripts/R/`                                                |
+| `$pyscripts`   | `.../scripts/python/`                                           |
+| `$bashscripts` | `.../scripts/bash/`                                             |
+| `$resultsfigs` | `.../results/figures/`                                          |
+| `$resultstbls` | `.../results/tables/`                                           |
+| `$resultsexp`  | `.../results/exports/`                                          |
+| `$drafts`      | `.../reports/draft_text/`                                       |
+| `$finalreport` | `.../reports/final_pdf/`                                        |
+| `$refs`        | `.../references/`                                               |
+
+This is a helpful add-on for efficient navigation during multi-omics biomarker discovery workflows.
