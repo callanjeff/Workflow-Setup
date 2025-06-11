@@ -1,29 +1,33 @@
 # Workflow-Setup
 
-A reusable bash script to create a standardized project directory structure for bioinformatics workflows. Ideal for TCGA multi-omics studies, including RNA-seq, methylation, CNV, and proteomics. Originally designed for a biomarker discovery project using PRRG2 in cervical cancer (TCGA-CESC), this structure promotes clean organization and reproducibility.
+A reusable bash script to create a standardized project directory structure for bioinformatics workflows. Suitable for a wide range of TCGA and omics-based studies, including RNA-seq, DNA methylation, CNV, proteomics, and clinical metadata integration. This structure promotes clean organization, reproducibility, and scalability across diverse bioinformatics projects.
 
 ## Directory Structure Created
 
 ```
-TCGA_CESC_PRRG2_Project/
+TCGA_XXXX_YYYY_Project/
 ├── data/
 │   ├── raw/           # Raw downloaded data
 │   ├── processed/     # Cleaned or normalized data
 │   └── metadata/      # Sample metadata and survival files
 ├── scripts/
 │   ├── R/             # R scripts for analysis
-│   ├── python/        # Optional Python tools
+│   ├── python/        # Python scripts for data processing
 │   └── bash/          # Shell scripts for automation
 ├── results/
 │   ├── figures/       # All plots and charts
-│   ├── tables/        # DEG and enrichment tables
-│   └── exports/       # Output datasets for reporting
+│   ├── tables/        # Processed results like correlation tables, enrichments
+│   └── exports/       # Output datasets for reporting or downstream use
 ├── reports/
-│   ├── draft_text/    # Report drafts
-│   └── final_pdf/     # Final write-up
-├── references/        # PDFs and papers
+│   ├── draft_text/    # Report drafts (Markdown, notes)
+│   └── final_pdf/     # Final write-up or submission
+├── references/        # PDFs and citation sources
 └── README.md          # Project overview
 ```
+
+> Replace `XXXX` with the TCGA cohort name (e.g., `CESC`, `KIRC`) and `YYYY` with the gene, target, or variable of interest (e.g., `PRRG2`, `TP53`, `ImmuneScore`).
+
+---
 
 ## How to Run
 
@@ -34,23 +38,25 @@ git clone https://github.com/yourusername/Workflow-Setup.git
 cd Workflow-Setup
 ```
 
-2. Make the script executable:
+2. Make the setup script executable:
 
 ```bash
-chmod +x setup_tcga_cesc_project.sh
+chmod +x setup_tcga_project.sh
 ```
 
 3. Run the setup script:
 
 ```bash
-./setup_tcga_cesc_project.sh
+./setup_tcga_project.sh
 ```
 
-This will create the following directory:
+This will create the following project directory:
 
-```bash
-~/Bioinformatics/TCGA_CESC_PRRG2_Project/
 ```
+~/Bioinformatics/TCGA_XXXX_YYYY_Project/
+```
+
+---
 
 ## Requirements
 
@@ -58,52 +64,55 @@ This will create the following directory:
 - Bash shell
 - Permissions to write to `~/Bioinformatics/`
 
+---
+
 ## Extend This Script
 
-You can modify the script to:
-- Auto-download TCGA data
+You can modify the setup to:
+- Auto-download TCGA or GEO datasets
 - Initialize a Git repository
-- Add a `.gitignore` or conda environment file
+- Add `.gitignore`, `environment.yml`, or Docker support
+- Preconfigure analysis templates or RMarkdown scaffolding
+
+---
 
 ## Environment Shortcuts (Optional)
 
-To make directory navigation easier during analysis, you can source the `set_tcga_dirs.sh` script to define environment variables pointing to each major project folder.
+To simplify navigation across the project’s directory tree, you can source the `set_tcga_env.sh` script to define commonly used environment variables.
 
 ### How to Set Up
 
-1. Run this in your terminal:
+```bash
+source scripts/bash/set_tcga_env.sh XXXX
+```
 
-   ```bash
-   source scripts/bash/set_tcga_dirs.sh
-   ```
+### Example Navigation
 
-2. Now you can jump to directories like this:
+```bash
+cd $pyscripts        # Python analysis scripts
+cd $rawdata          # Raw data directory
+cd $figures          # Generated plots and visualizations
+cd $reports_final    # Final report location
+```
 
-   ```bash
-   cd $pyscripts       # Python analysis scripts
-   cd $rawdata         # Raw TCGA data files
-   cd $resultsfigs     # Plots and charts
-   cd $finalreport     # Final PDF reports
-   ```
+---
 
-### Directory Shortcuts Available
+## Directory Shortcuts Available
 
-Note: In the path TCGA_XXXX_PRRG2_Project/, replace XXXX with the cohort abbreviation of interest (e.g., CESC, KIRC).
+| Variable         | Points To                                            |
+|------------------|------------------------------------------------------|
+| `$project_root`  | `~/Bioinformatics/TCGA_XXXX_YYYY_Project/`          |
+| `$rawdata`       | `.../data/raw/`                                      |
+| `$processed`     | `.../data/processed/`                                |
+| `$metadata`      | `.../data/metadata/`                                 |
+| `$rscripts`      | `.../scripts/R/`                                     |
+| `$pyscripts`     | `.../scripts/python/`                                |
+| `$bscripts`      | `.../scripts/bash/`                                  |
+| `$figures`       | `.../results/figures/`                               |
+| `$tables`        | `.../results/tables/`                                |
+| `$exports`       | `.../results/exports/`                               |
+| `$reports_draft` | `.../reports/draft_text/`                            |
+| `$reports_final` | `.../reports/final_pdf/`                             |
+| `$references`    | `.../references/`                                    |
 
-| Variable        | Points To                                                       |
-|----------------|------------------------------------------------------------------|
-| `$projectroot` | `~/Bioinformatics/TCGA_XXXX_PRRG2_Project/`                     |
-| `$rawdata`     | `.../data/raw/`                                                 |
-| `$processed`   | `.../data/processed/`                                           |
-| `$metadata`    | `.../data/metadata/`                                            |
-| `$rscripts`    | `.../scripts/R/`                                                |
-| `$pyscripts`   | `.../scripts/python/`                                           |
-| `$bashscripts` | `.../scripts/bash/`                                             |
-| `$resultsfigs` | `.../results/figures/`                                          |
-| `$resultstbls` | `.../results/tables/`                                           |
-| `$resultsexp`  | `.../results/exports/`                                          |
-| `$drafts`      | `.../reports/draft_text/`                                       |
-| `$finalreport` | `.../reports/final_pdf/`                                        |
-| `$refs`        | `.../references/`                                               |
-
-This is a helpful add-on for efficient navigation during multi-omics biomarker discovery workflows.
+This setup supports reproducible, modular, and multi-omics bioinformatics workflows — adaptable to many use cases beyond cancer research.
