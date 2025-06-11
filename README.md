@@ -88,9 +88,11 @@ To make directory navigation easier during analysis, you can source the `set_tcg
 
 ### Directory Shortcuts Available
 
+Note: In the path TCGA_XXXX_PRRG2_Project/, replace XXXX with the cohort abbreviation of interest (e.g., CESC, KIRC).
+
 | Variable        | Points To                                                       |
 |----------------|------------------------------------------------------------------|
-| `$projectroot` | `~/Bioinformatics/TCGA_CESC_PRRG2_Project/`                     |
+| `$projectroot` | `~/Bioinformatics/TCGA_XXXX_PRRG2_Project/`                     |
 | `$rawdata`     | `.../data/raw/`                                                 |
 | `$processed`   | `.../data/processed/`                                           |
 | `$metadata`    | `.../data/metadata/`                                            |
